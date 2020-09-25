@@ -15,7 +15,6 @@
 # Tells python what encoding the string is stored in
 
 # Scraped multi-line String
-import re
 forecast = '''
 
 Tonight
@@ -39,21 +38,15 @@ Mostly SunnyHigh: 71 F
 # Creates a list item at every instance of separator
 forecast_list = forecast.split('\n\n')
 
-
 # Loop through list to make string replacements to each item
 # Remove extra whitespaces or lines for a cleaner format
 
+# Aaron Deibele instructed me about the following code. It is not completely debugged. It takes character i in str day
+# and if it is lowercase and the next one is uppercase it puts in a space.
+
 for day in forecast_list:
-    day = day.replace('\n',': ')
-    for day in forecast_list:
-#The following code is the attempt to complete the assignment by creating a while loop, but Aaron Deibele and I were unable to debug it.
-        i = 0
-        print(len(day))
-        while i < len(forecast_list) -1:
-            if len(day)>0 and day[i].islower() and day[i+1].isupper:
-                day = day[0:i] + ' ' + day[i:len(day)]
-                i +=1
-            i += 1
-        print(day)
-
-
+    day = day.replace('\n',':')
+    for i in range(len(day)-1):
+        if len(day)>0 and day[i].islower() and day[i+1].isupper():
+            day = day[0:i+1] + ' ' + day[i+1:len(day)]
+    print(day)
