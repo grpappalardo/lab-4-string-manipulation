@@ -7,13 +7,15 @@
 #Saturday: Mostly Sunny, High: 77 F
 #Sunday: Mostly Sunny, High: 71 F
 
-#Note: Copy the below code in the edit mode to retain the multi-line string formatting. There should be 39 lines of code when pasted in Python IDLE.
+#Note: Copy the below code in the edit mode to retain the multi-line string formatting. There should be
+# 39 lines of code when pasted in Python IDLE.
 
 # -*- coding: utf-8 -*-
 # Keep the line above when running script
 # Tells python what encoding the string is stored in
 
 # Scraped multi-line String
+import re
 forecast = '''
 
 Tonight
@@ -37,9 +39,21 @@ Mostly SunnyHigh: 71 F
 # Creates a list item at every instance of separator
 forecast_list = forecast.split('\n\n')
 
+
 # Loop through list to make string replacements to each item
 # Remove extra whitespaces or lines for a cleaner format
+
 for day in forecast_list:
     day = day.replace('\n',': ')
-    # add your code here
-    print(day)
+    for day in forecast_list:
+#The following code is the attempt to complete the assignment by creating a while loop, but Aaron Deibele and I were unable to debug it.
+        i = 0
+        print(len(day))
+        while i < len(forecast_list) -1:
+            if len(day)>0 and day[i].islower() and day[i+1].isupper:
+                day = day[0:i] + ' ' + day[i:len(day)]
+                i +=1
+            i += 1
+        print(day)
+
+
